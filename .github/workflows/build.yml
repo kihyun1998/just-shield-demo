@@ -1,0 +1,10 @@
+# 데모용 — 일부러 취약하게 만든 워크플로. just-shield가 PR에서 잡아내는 것을 보여준다.
+name: build
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aquasecurity/trivy-action@master
+      - run: curl -sSL https://example.com/install.sh | sh
