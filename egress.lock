@@ -1,0 +1,9 @@
+# egress.lock — 잡별 허용 통신 목적지 (just-shield observe 모드, ADR-0006).
+# deploy 잡이 평소 통신하는 곳을 박제했다. 여기 없는 곳과 통신하면 🔴.
+# 와일드카드는 무작위 접두사 도메인에만 사람이 명시적으로 쓴다.
+[deploy]
+example.com
+github.com
+api.github.com
+objects.githubusercontent.com
+*.githubusercontent.com
