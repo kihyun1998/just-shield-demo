@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
-      - uses: kihyun1998/just-shield@f9d951182d93c8827bb7ec8ba4c5af6ef12047d1 # v0.2.0
+      - uses: kihyun1998/just-shield@60bbb48d88ef65b02848146981c30dfaa09ecbc9 # v0.2.0 + 관찰자 스텝 생존 수정
         with:
           mode: observe
       - name: 정상 배포 (egress.lock에 등재된 곳만 통신)
