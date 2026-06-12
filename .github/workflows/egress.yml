@@ -1,0 +1,21 @@
+# just-shield 관찰 모드 데모 (v2, 층 ⓒ).
+# deploy 잡이 실행 중 어디와 통신하는지 관찰하고 egress.lock과 대조한다.
+# 잡 시작 시 관찰이 켜지고(한 블록), 잡 끝에 보고가 자동 실행된다(post 훅).
+# 미등재 목적지와 통신하면 🔴 — 시크릿 유출을 몇 분 안에 발각한다.
+name: egress
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: kihyun1998/just-shield@f9d951182d93c8827bb7ec8ba4c5af6ef12047d1 # v0.2.0
+        with:
+          mode: observe
+      - name: 정상 배포 (egress.lock에 등재된 곳만 통신)
+        run: curl -sS https://example.com > /dev/null || true
